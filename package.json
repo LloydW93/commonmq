@@ -5,7 +5,8 @@
   "main": "app.js",
   "author": "Lloyd Wallis <lloyd.wallis93@gmail.com>",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha spec/"
+    "test": "node_modules/.bin/mocha spec/",
+    "coverage": "node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha spec"
   },
   "dependencies": {
     "extend": "^3.0.0",
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "istanbul": "^0.4.3",
     "mocha": "^2.4.5",
     "mockery": "^1.7.0",
     "sinon": "^1.17.4"
