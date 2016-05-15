@@ -3,7 +3,7 @@
 const CommonMQ = (function() {
     const queueProtocolMapper = {
         rsmq: require('./lib/rsmq-client'),
-        sqs: require('sqs-consumer')
+        sqs: require('./lib/sqs-client')
     };
     const extend = require('extend');
     const util = require('util');

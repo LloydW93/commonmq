@@ -38,7 +38,7 @@ describe('CommonMQ RSMQ Client', function() {
             port: 6379
         })).to.be.true;
 
-        expect(commonmq.queueName).to.equal('commonmq');
+        expect(commonmq.queueId).to.equal('commonmq');
     });
 
     it('Should use the provided RSMQ name if provided', function() {
@@ -46,7 +46,7 @@ describe('CommonMQ RSMQ Client', function() {
             queue: 'rsmq://bananaqueue'
         });
 
-        expect(commonmq.queueName).to.equal('bananaqueue');
+        expect(commonmq.queueId).to.equal('bananaqueue');
     });
 
     it('Should use the provided RSMQ host if provided', function() {
@@ -59,7 +59,7 @@ describe('CommonMQ RSMQ Client', function() {
             port: 6379
         })).to.be.true;
 
-        expect(commonmq.queueName).to.equal('bananaqueue');
+        expect(commonmq.queueId).to.equal('bananaqueue');
     });
 
     it('Should use the provided RSMQ port if provided', function() {
@@ -72,7 +72,7 @@ describe('CommonMQ RSMQ Client', function() {
             port: 1234
         }));
 
-        expect(commonmq.queueName).to.equal('bananaqueue');
+        expect(commonmq.queueId).to.equal('bananaqueue');
     });
 
     it('Should send an RSMQ message and return an ID', function(done) {
@@ -98,7 +98,7 @@ describe('CommonMQ RSMQ Client', function() {
             expect(identifier).to.equal(messageId);
 
             expect(rsmqSendMessageStub.calledWith({
-                qname: commonmq.queueName,
+                qname: commonmq.queueId,
                 message: message
             })).to.be.true;
 
@@ -134,7 +134,7 @@ describe('CommonMQ RSMQ Client', function() {
             expect(resp.data).to.equal(message);
 
             expect(rsmqReceiveMessageStub.calledWith({
-                qname: commonmq.queueName
+                qname: commonmq.queueId
             })).to.be.true;
 
             done();
@@ -171,7 +171,7 @@ describe('CommonMQ RSMQ Client', function() {
             expect(resp.data).to.equal(message);
 
             expect(rsmqReceiveMessageStub.calledWith({
-                qname: commonmq.queueName
+                qname: commonmq.queueId
             })).to.be.true;
 
             done();
@@ -195,7 +195,7 @@ describe('CommonMQ RSMQ Client', function() {
             expect(err).to.not.be.okay;
 
             expect(rsmqChangeMessageVisibilityStub.calledWith({
-                qname: commonmq.queueName,
+                qname: commonmq.queueId,
                 id: messageId,
                 vt: 300
             })).to.be.true;
@@ -221,7 +221,7 @@ describe('CommonMQ RSMQ Client', function() {
             expect(err).to.not.be.okay;
 
             expect(rsmqDeleteMessageStub.calledWith({
-                qname: commonmq.queueName,
+                qname: commonmq.queueId,
                 id: messageId
             })).to.be.true;
 
@@ -255,7 +255,7 @@ describe('CommonMQ RSMQ Client', function() {
             expect(newMessageId).to.equal(badMessageId);
 
             expect(rsmqDeleteMessageStub.calledWith({
-                qname: commonmq.queueName,
+                qname: commonmq.queueId,
                 id: messageId
             })).to.be.true;
 
